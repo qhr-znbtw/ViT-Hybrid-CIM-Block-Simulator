@@ -1,0 +1,6 @@
+﻿bytes,path,share,transfers
+151296,digital_buffer->digital_processor,0.00562984,1
+5446656,digital_processor->rram_cim,0.20267417,6
+8519856,digital_processor->sram_cim,0.31703026,9
+5446656,rram_cim->digital_processor,0.20267417,6
+7309488,sram_cim->digital_processor,0.27199156,7

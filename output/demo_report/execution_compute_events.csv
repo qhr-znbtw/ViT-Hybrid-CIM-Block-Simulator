@@ -1,0 +1,21 @@
+﻿input_bit_width,lhs_shape,macs,mode,op_name,output_bit_width,output_shape,rhs_shape,unit,weight_bit_width
+8,"[1, 5, 8]",320,resident_static,transformer_block.attention.q_proj.backbone_matmul,32,"[1, 5, 8]","[8, 8]",rram_cim,8
+8,"[1, 5, 8]",80,resident,transformer_block.attention.q_proj.lora_a_matmul,32,"[1, 5, 2]","[8, 2]",sram_cim,8
+8,"[1, 5, 2]",80,resident,transformer_block.attention.q_proj.lora_b_matmul,32,"[1, 5, 8]","[2, 8]",sram_cim,8
+8,"[1, 5, 8]",320,resident_static,transformer_block.attention.k_proj.backbone_matmul,32,"[1, 5, 8]","[8, 8]",rram_cim,8
+8,"[1, 5, 8]",80,resident,transformer_block.attention.k_proj.lora_a_matmul,32,"[1, 5, 2]","[8, 2]",sram_cim,8
+8,"[1, 5, 2]",80,resident,transformer_block.attention.k_proj.lora_b_matmul,32,"[1, 5, 8]","[2, 8]",sram_cim,8
+8,"[1, 5, 8]",320,resident_static,transformer_block.attention.v_proj.backbone_matmul,32,"[1, 5, 8]","[8, 8]",rram_cim,8
+8,"[1, 5, 8]",80,resident,transformer_block.attention.v_proj.lora_a_matmul,32,"[1, 5, 2]","[8, 2]",sram_cim,8
+8,"[1, 5, 2]",80,resident,transformer_block.attention.v_proj.lora_b_matmul,32,"[1, 5, 8]","[2, 8]",sram_cim,8
+8,"[1, 2, 5, 4]",200,dynamic,transformer_block.attention.qk_t,32,"[1, 2, 5, 5]","[1, 2, 4, 5]",sram_cim,8
+8,"[1, 2, 5, 5]",200,dynamic,transformer_block.attention.probabilities_v,32,"[1, 2, 5, 4]","[1, 2, 5, 4]",sram_cim,8
+8,"[1, 5, 8]",320,resident_static,transformer_block.attention.out_proj.backbone_matmul,32,"[1, 5, 8]","[8, 8]",rram_cim,8
+8,"[1, 5, 8]",80,resident,transformer_block.attention.out_proj.lora_a_matmul,32,"[1, 5, 2]","[8, 2]",sram_cim,8
+8,"[1, 5, 2]",80,resident,transformer_block.attention.out_proj.lora_b_matmul,32,"[1, 5, 8]","[2, 8]",sram_cim,8
+8,"[1, 5, 8]",640,resident_static,transformer_block.feed_forward.up_proj.backbone_matmul,32,"[1, 5, 16]","[8, 16]",rram_cim,8
+8,"[1, 5, 8]",80,resident,transformer_block.feed_forward.up_proj.lora_a_matmul,32,"[1, 5, 2]","[8, 2]",sram_cim,8
+8,"[1, 5, 2]",160,resident,transformer_block.feed_forward.up_proj.lora_b_matmul,32,"[1, 5, 16]","[2, 16]",sram_cim,8
+8,"[1, 5, 16]",640,resident_static,transformer_block.feed_forward.down_proj.backbone_matmul,32,"[1, 5, 8]","[16, 8]",rram_cim,8
+8,"[1, 5, 16]",160,resident,transformer_block.feed_forward.down_proj.lora_a_matmul,32,"[1, 5, 2]","[16, 2]",sram_cim,8
+8,"[1, 5, 2]",80,resident,transformer_block.feed_forward.down_proj.lora_b_matmul,32,"[1, 5, 8]","[2, 8]",sram_cim,8

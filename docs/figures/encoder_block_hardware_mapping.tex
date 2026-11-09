@@ -1,0 +1,186 @@
+\documentclass[tikz,border=8pt]{standalone}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc,fit,positioning,backgrounds}
+
+\definecolor{RRAMColor}{HTML}{D97706}
+\definecolor{SRAMColor}{HTML}{2563EB}
+\definecolor{DigitalColor}{HTML}{15803D}
+\definecolor{HybridColor}{HTML}{6D28D9}
+\definecolor{LineColor}{HTML}{334155}
+\definecolor{PanelColor}{HTML}{F8FAFC}
+
+\tikzset{
+  flow/.style={-{Latex[length=2.4mm]}, draw=LineColor, line width=0.85pt},
+  residual/.style={-{Latex[length=2.4mm]}, draw=HybridColor, line width=1.05pt,
+    rounded corners=4pt},
+  detail/.style={-{Latex[length=2.2mm]}, draw=HybridColor!75, line width=0.8pt,
+    dashed},
+  topdigital/.style={draw=DigitalColor!85!black, fill=DigitalColor!8,
+    rounded corners=2pt, minimum width=2.8cm, minimum height=1.0cm,
+    align=center, font=\small},
+  topcomposite/.style={draw=HybridColor!85!black, fill=HybridColor!7,
+    rounded corners=2pt, minimum width=2.9cm, minimum height=1.0cm,
+    align=center, font=\small},
+  io/.style={draw=LineColor, fill=LineColor!5, rounded corners=2pt,
+    minimum width=2.0cm, minimum height=0.85cm, align=center, font=\small},
+  add/.style={circle, draw=DigitalColor!85!black, fill=DigitalColor!9,
+    minimum size=0.88cm, inner sep=0pt, font=\large\bfseries},
+  sram/.style={draw=SRAMColor!90!black, fill=SRAMColor!9,
+    rounded corners=2pt, minimum width=3.15cm, minimum height=0.95cm,
+    align=center, font=\small},
+  digital/.style={draw=DigitalColor!90!black, fill=DigitalColor!8,
+    rounded corners=2pt, minimum width=3.15cm, minimum height=0.95cm,
+    align=center, font=\small},
+  hybrid/.style={draw=HybridColor!80!black, fill=HybridColor!4,
+    rounded corners=3pt, text width=6.45cm, minimum height=2.65cm,
+    align=left, inner sep=5pt, font=\small},
+  panel/.style={draw=LineColor!38, fill=PanelColor, rounded corners=4pt,
+    inner sep=8pt},
+  paneltitle/.style={font=\small\bfseries, text=LineColor},
+  arrowlabel/.style={font=\scriptsize, fill=white, inner sep=1.5pt, text=LineColor},
+  note/.style={font=\scriptsize, text=LineColor, align=left},
+  legend/.style={rounded corners=1.5pt, minimum width=2.25cm,
+    minimum height=0.56cm, align=center, font=\scriptsize}
+}
+
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+
+% Title and legend
+\node[font=\Large\bfseries, text=LineColor] at (14.0,23.3)
+  {ViT Transformer Encoder Block 在 Hybrid CIM 系统中的计算与数据通路映射};
+
+\node[legend, draw=RRAMColor!90!black, fill=RRAMColor!10] at (4.2,22.15)
+  {\textcolor{RRAMColor!90!black}{\bfseries RRAM-CIM}\ 静态冻结权重};
+\node[legend, draw=SRAMColor!90!black, fill=SRAMColor!9] at (10.7,22.15)
+  {\textcolor{SRAMColor!90!black}{\bfseries SRAM-CIM}\ LoRA/动态矩阵};
+\node[legend, draw=DigitalColor!90!black, fill=DigitalColor!8] at (17.2,22.15)
+  {\textcolor{DigitalColor!90!black}{\bfseries Digital}\ 非线性/逐元素/控制};
+\node[legend, draw=HybridColor!85!black, fill=HybridColor!6] at (24.0,22.15)
+  {\textcolor{HybridColor!90!black}{\bfseries Hybrid Linear}\ RRAM+SRAM+Digital};
+
+% Central top-to-bottom Transformer Encoder Block data flow
+\node[io] (input) at (14.0,20.15) {输入 $X$};
+\node[topdigital] (ln1) at (14.0,18.05)
+  {LayerNorm 1\\\textcolor{DigitalColor!90!black}{Digital}};
+\node[topcomposite] (mha) at (14.0,15.95)
+  {Multi-Head Attention\\[-1pt]\scriptsize 细节 A};
+\node[add] (add1) at (14.0,13.85) {$+$};
+\node[topdigital] (ln2) at (14.0,11.75)
+  {LayerNorm 2\\\textcolor{DigitalColor!90!black}{Digital}};
+\node[topcomposite] (ffn) at (14.0,9.65)
+  {FeedForward Network\\[-1pt]\scriptsize 细节 B};
+\node[add] (add2) at (14.0,7.55) {$+$};
+\node[io] (output) at (14.0,5.45) {输出 $Y$};
+
+\draw[flow] (input) -- node[arrowlabel, right] {激活} (ln1);
+\draw[flow] (ln1) -- (mha);
+\draw[flow] (mha) -- node[arrowlabel, right] {注意力输出} (add1);
+\draw[flow] (add1) -- (ln2);
+\draw[flow] (ln2) -- (ffn);
+\draw[flow] (ffn) -- node[arrowlabel, right] {FFN 输出} (add2);
+\draw[flow] (add2) -- (output);
+
+% Residual lanes stay close to the central spine
+\draw[residual] (input.east) -- ++(3.15,0) |-
+  node[arrowlabel, pos=0.72, right] {残差 1：Digital 加法} (add1.east);
+\draw[residual] (add1.west) -- ++(-3.15,0) |-
+  node[arrowlabel, pos=0.72, left] {残差 2：Digital 加法} (add2.west);
+
+% Left panel: detailed MHA mapping
+\node[hybrid] (qkv) at (4.25,18.25) {
+  \centering\textbf{Q/K/V Hybrid 投影}\par\vspace{2pt}
+  \textcolor{RRAMColor!90!black}{\bfseries RRAM-CIM:}
+  $XW_{Q0},\ XW_{K0},\ XW_{V0}$\\
+  \textcolor{SRAMColor!90!black}{\bfseries SRAM-CIM:}
+  $(XA_Q)B_Q,\ (XA_K)B_K,\ (XA_V)B_V$\\
+  \textcolor{DigitalColor!90!black}{\bfseries Digital:}
+  两路结果合并与偏置\\[-1pt]
+  \scriptsize 输入广播到 RRAM/SRAM，部分结果返回 Digital
+};
+\node[digital] (split) at (4.25,15.25)
+  {分头、reshape 与 transpose\\\textcolor{DigitalColor!90!black}{Digital}};
+\node[sram] (qkt) at (4.25,13.10)
+  {$QK^{\mathsf T}$ 动态矩阵乘法\\\textcolor{SRAMColor!90!black}{SRAM-CIM}};
+\node[digital] (softmax) at (4.25,10.95)
+  {缩放 $1/\sqrt{d_h}$ 与 Softmax\\\textcolor{DigitalColor!90!black}{Digital}};
+\node[sram] (pv) at (4.25,8.80)
+  {$PV$ 动态矩阵乘法\\\textcolor{SRAMColor!90!black}{SRAM-CIM}};
+\node[digital] (mergeheads) at (4.25,6.65)
+  {transpose 与合并多头\\\textcolor{DigitalColor!90!black}{Digital}};
+\node[hybrid] (oproj) at (4.25,3.75) {
+  \centering\textbf{输出 Hybrid 投影}\par\vspace{2pt}
+  \textcolor{RRAMColor!90!black}{\bfseries RRAM-CIM:}
+  $ZW_{O0}$\\
+  \textcolor{SRAMColor!90!black}{\bfseries SRAM-CIM:}
+  $(ZA_O)B_O$（可选 LoRA）\\
+  \textcolor{DigitalColor!90!black}{\bfseries Digital:}
+  两路结果合并与偏置\\[-1pt]
+  \scriptsize 输出留在 Digital，供中央残差连接使用
+};
+
+\draw[flow] (qkv) -- node[arrowlabel, right] {$Q,K,V$} (split);
+\draw[flow] (split) -- node[arrowlabel, right] {$Q_h,K_h$} (qkt);
+\draw[flow] (qkt) -- node[arrowlabel, right] {scores} (softmax);
+\draw[flow] (softmax) -- node[arrowlabel, right] {$P$} (pv);
+\draw[flow] (split.west) -- ++(-0.72,0) |-
+  node[arrowlabel, pos=0.67, left] {$V_h$} (pv.west);
+\draw[flow] (pv) -- node[arrowlabel, right] {context} (mergeheads);
+\draw[flow] (mergeheads) -- node[arrowlabel, right] {$Z$} (oproj);
+
+\begin{scope}[on background layer]
+  \node[panel, fit=(qkv)(split)(qkt)(softmax)(pv)(mergeheads)(oproj),
+    label={[paneltitle]north:细节 A：Multi-Head Attention 的硬件映射}]
+    (mha-panel) {};
+\end{scope}
+\draw[detail] (mha.west) -- node[arrowlabel, above] {结构展开 A}
+  (mha-panel.east |- mha.west);
+
+% Right panel: detailed FFN mapping
+\node[hybrid] (fc1) at (23.75,13.20) {
+  \centering\textbf{Hybrid Linear 1：$D\rightarrow D_{ff}$}\par\vspace{2pt}
+  \textcolor{RRAMColor!90!black}{\bfseries RRAM-CIM:}
+  $XW_{\mathrm{up},0}$\\
+  \textcolor{SRAMColor!90!black}{\bfseries SRAM-CIM:}
+  $(XA_{\mathrm{up}})B_{\mathrm{up}}$\\
+  \textcolor{DigitalColor!90!black}{\bfseries Digital:}
+  两路结果合并与偏置\\[-1pt]
+  \scriptsize 输入广播到 RRAM/SRAM，部分结果返回 Digital
+};
+\node[digital] (gelu) at (23.75,9.75)
+  {GELU 逐元素非线性\\\textcolor{DigitalColor!90!black}{Digital}};
+\node[hybrid] (fc2) at (23.75,6.30) {
+  \centering\textbf{Hybrid Linear 2：$D_{ff}\rightarrow D$}\par\vspace{2pt}
+  \textcolor{RRAMColor!90!black}{\bfseries RRAM-CIM:}
+  $HW_{\mathrm{down},0}$\\
+  \textcolor{SRAMColor!90!black}{\bfseries SRAM-CIM:}
+  $(HA_{\mathrm{down}})B_{\mathrm{down}}$\\
+  \textcolor{DigitalColor!90!black}{\bfseries Digital:}
+  两路结果合并与偏置\\[-1pt]
+  \scriptsize 输出留在 Digital，随后执行中央残差加法
+};
+
+\draw[flow] (fc1) -- node[arrowlabel, right] {$H$} (gelu);
+\draw[flow] (gelu) -- node[arrowlabel, right] {$\operatorname{GELU}(H)$} (fc2);
+
+\begin{scope}[on background layer]
+  \node[panel, fit=(fc1)(gelu)(fc2),
+    label={[paneltitle]north:细节 B：FeedForward 的硬件映射}]
+    (ffn-panel) {};
+\end{scope}
+\draw[detail] (ffn.east) -- node[arrowlabel, above] {结构展开 B}
+  (ffn-panel.west |- ffn.east);
+
+% Footer
+\node[note, text width=27cm] at (14.0,0.75) {
+  \textbf{读图规则：}
+  中央实线箭头给出 Encoder Block 自上而下的真实执行顺序；两侧紫色虚线仅表示结构展开，不是数据传输。
+  侧面板内的实线箭头表示激活或中间结果的数据通路，跨越不同颜色硬件节点时记为一次逻辑传输。
+  Hybrid Linear 固定执行“输入广播到 RRAM/SRAM $\rightarrow$ 两路矩阵乘法 $\rightarrow$ 结果返回 Digital 合并”。
+  权重与参数加载属于准备阶段，未画入单次推理主数据流。
+};
+
+\end{tikzpicture}
+\end{document}

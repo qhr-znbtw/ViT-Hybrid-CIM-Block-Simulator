@@ -1,0 +1,33 @@
+{
+  "name": "vit-base-block-halora",
+  "simulator": {
+    "model": {
+      "embed_dim": 768,
+      "num_heads": 12,
+      "mlp_dim": 3072,
+      "lora_rank": 4,
+      "layer_norm_epsilon": 1e-05
+    },
+    "precision": {
+      "activation_bits": 8,
+      "weight_bits": 8,
+      "accumulator_bits": 32
+    },
+    "mapping": {
+      "q_proj": "hybrid",
+      "k_proj": "hybrid",
+      "v_proj": "hybrid",
+      "out_proj": "rram",
+      "ff_up": "hybrid",
+      "ff_down": "hybrid",
+      "qk_matmul": "sram",
+      "pv_matmul": "sram",
+      "nonlinear": "digital"
+    }
+  },
+  "workload": {
+    "batch_size": 1,
+    "tokens": 197
+  },
+  "seed": 2026
+}

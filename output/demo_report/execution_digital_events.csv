@@ -1,0 +1,29 @@
+﻿input_shapes,op_name,op_type,operation_counts,output_elements,output_shape,unit
+"[[1, 5, 8]]",transformer_block.layer_norm1,layer_norm,"{""add_or_subtract"": 155, ""multiply"": 80, ""divide"": 50, ""sqrt"": 5}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8], [1, 5, 8]]",transformer_block.attention.q_proj.merge,add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8], [8]]",transformer_block.attention.q_proj.bias,bias_add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8], [1, 5, 8]]",transformer_block.attention.k_proj.merge,add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8], [8]]",transformer_block.attention.k_proj.bias,bias_add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8], [1, 5, 8]]",transformer_block.attention.v_proj.merge,add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8], [8]]",transformer_block.attention.v_proj.bias,bias_add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8]]",transformer_block.attention.reshape_q,reshape,"{""metadata_or_layout"": 40}",40,"[1, 5, 2, 4]",digital_processor
+"[[1, 5, 8]]",transformer_block.attention.reshape_k,reshape,"{""metadata_or_layout"": 40}",40,"[1, 5, 2, 4]",digital_processor
+"[[1, 5, 8]]",transformer_block.attention.reshape_v,reshape,"{""metadata_or_layout"": 40}",40,"[1, 5, 2, 4]",digital_processor
+"[[1, 5, 2, 4]]",transformer_block.attention.transpose_q,transpose,"{""data_rearrangement"": 40}",40,"[1, 2, 5, 4]",digital_processor
+"[[1, 5, 2, 4]]",transformer_block.attention.transpose_k,transpose,"{""data_rearrangement"": 40}",40,"[1, 2, 5, 4]",digital_processor
+"[[1, 5, 2, 4]]",transformer_block.attention.transpose_v,transpose,"{""data_rearrangement"": 40}",40,"[1, 2, 5, 4]",digital_processor
+"[[1, 2, 5, 4]]",transformer_block.attention.transpose_k_t,transpose,"{""data_rearrangement"": 40}",40,"[1, 2, 4, 5]",digital_processor
+"[[1, 2, 5, 5]]",transformer_block.attention.scale_scores,scale,"{""multiply"": 50}",50,"[1, 2, 5, 5]",digital_processor
+"[[1, 2, 5, 5]]",transformer_block.attention.softmax,softmax,"{""compare"": 40, ""add_or_subtract"": 90, ""exp"": 50, ""divide"": 50}",50,"[1, 2, 5, 5]",digital_processor
+"[[1, 2, 5, 4]]",transformer_block.attention.transpose_context,transpose,"{""data_rearrangement"": 40}",40,"[1, 5, 2, 4]",digital_processor
+"[[1, 5, 2, 4]]",transformer_block.attention.merge_heads,reshape,"{""metadata_or_layout"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8], [1, 5, 8]]",transformer_block.attention.out_proj.merge,add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8], [8]]",transformer_block.attention.out_proj.bias,bias_add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8], [1, 5, 8]]",transformer_block.attention_residual_add,residual_add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8]]",transformer_block.layer_norm2,layer_norm,"{""add_or_subtract"": 155, ""multiply"": 80, ""divide"": 50, ""sqrt"": 5}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 16], [1, 5, 16]]",transformer_block.feed_forward.up_proj.merge,add,"{""add"": 80}",80,"[1, 5, 16]",digital_processor
+"[[1, 5, 16], [16]]",transformer_block.feed_forward.up_proj.bias,bias_add,"{""add"": 80}",80,"[1, 5, 16]",digital_processor
+"[[1, 5, 16]]",transformer_block.feed_forward.gelu,gelu,"{""multiply"": 480, ""add"": 160, ""tanh"": 80}",80,"[1, 5, 16]",digital_processor
+"[[1, 5, 8], [1, 5, 8]]",transformer_block.feed_forward.down_proj.merge,add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8], [8]]",transformer_block.feed_forward.down_proj.bias,bias_add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor
+"[[1, 5, 8], [1, 5, 8]]",transformer_block.feed_forward_residual_add,residual_add,"{""add"": 40}",40,"[1, 5, 8]",digital_processor

@@ -1,0 +1,29 @@
+﻿action,bit_width,bytes,elements,shape,unit,version,weight_name
+load_parameter,32,32,8,[8],digital_processor,1,transformer_block.ln1_gamma
+load_parameter,32,32,8,[8],digital_processor,1,transformer_block.ln1_beta
+load_parameter,32,32,8,[8],digital_processor,1,transformer_block.ln2_gamma
+load_parameter,32,32,8,[8],digital_processor,1,transformer_block.ln2_beta
+program,8,64,64,"[8, 8]",rram_cim,1,transformer_block.attention.q_proj.backbone
+load,8,16,16,"[8, 2]",sram_cim,1,transformer_block.attention.q_proj.lora_a
+load,8,16,16,"[2, 8]",sram_cim,1,transformer_block.attention.q_proj.lora_b
+load_parameter,32,32,8,[8],digital_processor,1,transformer_block.attention.q_proj.bias
+program,8,64,64,"[8, 8]",rram_cim,1,transformer_block.attention.k_proj.backbone
+load,8,16,16,"[8, 2]",sram_cim,1,transformer_block.attention.k_proj.lora_a
+load,8,16,16,"[2, 8]",sram_cim,1,transformer_block.attention.k_proj.lora_b
+load_parameter,32,32,8,[8],digital_processor,1,transformer_block.attention.k_proj.bias
+program,8,64,64,"[8, 8]",rram_cim,1,transformer_block.attention.v_proj.backbone
+load,8,16,16,"[8, 2]",sram_cim,1,transformer_block.attention.v_proj.lora_a
+load,8,16,16,"[2, 8]",sram_cim,1,transformer_block.attention.v_proj.lora_b
+load_parameter,32,32,8,[8],digital_processor,1,transformer_block.attention.v_proj.bias
+program,8,64,64,"[8, 8]",rram_cim,1,transformer_block.attention.out_proj.backbone
+load,8,16,16,"[8, 2]",sram_cim,1,transformer_block.attention.out_proj.lora_a
+load,8,16,16,"[2, 8]",sram_cim,1,transformer_block.attention.out_proj.lora_b
+load_parameter,32,32,8,[8],digital_processor,1,transformer_block.attention.out_proj.bias
+program,8,128,128,"[8, 16]",rram_cim,1,transformer_block.feed_forward.up_proj.backbone
+load,8,16,16,"[8, 2]",sram_cim,1,transformer_block.feed_forward.up_proj.lora_a
+load,8,32,32,"[2, 16]",sram_cim,1,transformer_block.feed_forward.up_proj.lora_b
+load_parameter,32,64,16,[16],digital_processor,1,transformer_block.feed_forward.up_proj.bias
+program,8,128,128,"[16, 8]",rram_cim,1,transformer_block.feed_forward.down_proj.backbone
+load,8,32,32,"[16, 2]",sram_cim,1,transformer_block.feed_forward.down_proj.lora_a
+load,8,16,16,"[2, 8]",sram_cim,1,transformer_block.feed_forward.down_proj.lora_b
+load_parameter,32,32,8,[8],digital_processor,1,transformer_block.feed_forward.down_proj.bias

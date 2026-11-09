@@ -1,0 +1,19 @@
+﻿input_bit_width,lhs_shape,macs,mode,op_name,output_bit_width,output_shape,rhs_shape,unit,weight_bit_width
+8,"[1, 197, 768]",116195328,resident_static,transformer_block.attention.q_proj.backbone_matmul,32,"[1, 197, 768]","[768, 768]",rram_cim,8
+8,"[1, 197, 768]",605184,resident,transformer_block.attention.q_proj.lora_a_matmul,32,"[1, 197, 4]","[768, 4]",sram_cim,8
+8,"[1, 197, 4]",605184,resident,transformer_block.attention.q_proj.lora_b_matmul,32,"[1, 197, 768]","[4, 768]",sram_cim,8
+8,"[1, 197, 768]",116195328,resident_static,transformer_block.attention.k_proj.backbone_matmul,32,"[1, 197, 768]","[768, 768]",rram_cim,8
+8,"[1, 197, 768]",605184,resident,transformer_block.attention.k_proj.lora_a_matmul,32,"[1, 197, 4]","[768, 4]",sram_cim,8
+8,"[1, 197, 4]",605184,resident,transformer_block.attention.k_proj.lora_b_matmul,32,"[1, 197, 768]","[4, 768]",sram_cim,8
+8,"[1, 197, 768]",116195328,resident_static,transformer_block.attention.v_proj.backbone_matmul,32,"[1, 197, 768]","[768, 768]",rram_cim,8
+8,"[1, 197, 768]",605184,resident,transformer_block.attention.v_proj.lora_a_matmul,32,"[1, 197, 4]","[768, 4]",sram_cim,8
+8,"[1, 197, 4]",605184,resident,transformer_block.attention.v_proj.lora_b_matmul,32,"[1, 197, 768]","[4, 768]",sram_cim,8
+8,"[1, 12, 197, 64]",29805312,dynamic,transformer_block.attention.qk_t,32,"[1, 12, 197, 197]","[1, 12, 64, 197]",sram_cim,8
+8,"[1, 12, 197, 197]",29805312,dynamic,transformer_block.attention.probabilities_v,32,"[1, 12, 197, 64]","[1, 12, 197, 64]",sram_cim,8
+8,"[1, 197, 768]",116195328,resident_static,transformer_block.attention.out_proj.backbone_matmul,32,"[1, 197, 768]","[768, 768]",rram_cim,8
+8,"[1, 197, 768]",464781312,resident_static,transformer_block.feed_forward.up_proj.backbone_matmul,32,"[1, 197, 3072]","[768, 3072]",rram_cim,8
+8,"[1, 197, 768]",605184,resident,transformer_block.feed_forward.up_proj.lora_a_matmul,32,"[1, 197, 4]","[768, 4]",sram_cim,8
+8,"[1, 197, 4]",2420736,resident,transformer_block.feed_forward.up_proj.lora_b_matmul,32,"[1, 197, 3072]","[4, 3072]",sram_cim,8
+8,"[1, 197, 3072]",464781312,resident_static,transformer_block.feed_forward.down_proj.backbone_matmul,32,"[1, 197, 768]","[3072, 768]",rram_cim,8
+8,"[1, 197, 3072]",2420736,resident,transformer_block.feed_forward.down_proj.lora_a_matmul,32,"[1, 197, 4]","[3072, 4]",sram_cim,8
+8,"[1, 197, 4]",605184,resident,transformer_block.feed_forward.down_proj.lora_b_matmul,32,"[1, 197, 768]","[4, 768]",sram_cim,8

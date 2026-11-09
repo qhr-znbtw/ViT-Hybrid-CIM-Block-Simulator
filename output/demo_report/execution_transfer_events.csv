@@ -1,0 +1,32 @@
+﻿bit_width,bytes,destination,elements,shape,source,tensor_name,transfer_name
+8,40,digital_processor,40,"[1, 5, 8]",digital_buffer,block_input,transformer_block.input_to_digital
+32,160,rram_cim,40,"[1, 5, 8]",digital_processor,transformer_block.norm1,transformer_block.attention.q_proj.input_broadcast:rram_cim
+32,160,sram_cim,40,"[1, 5, 8]",digital_processor,transformer_block.norm1,transformer_block.attention.q_proj.input_broadcast:sram_cim
+32,160,digital_processor,40,"[1, 5, 8]",rram_cim,transformer_block.attention.q_proj.backbone_output,transformer_block.attention.q_proj.backbone_to_digital
+32,160,digital_processor,40,"[1, 5, 8]",sram_cim,transformer_block.attention.q_proj.lora_output,transformer_block.attention.q_proj.lora_to_digital
+32,160,rram_cim,40,"[1, 5, 8]",digital_processor,transformer_block.norm1,transformer_block.attention.k_proj.input_broadcast:rram_cim
+32,160,sram_cim,40,"[1, 5, 8]",digital_processor,transformer_block.norm1,transformer_block.attention.k_proj.input_broadcast:sram_cim
+32,160,digital_processor,40,"[1, 5, 8]",rram_cim,transformer_block.attention.k_proj.backbone_output,transformer_block.attention.k_proj.backbone_to_digital
+32,160,digital_processor,40,"[1, 5, 8]",sram_cim,transformer_block.attention.k_proj.lora_output,transformer_block.attention.k_proj.lora_to_digital
+32,160,rram_cim,40,"[1, 5, 8]",digital_processor,transformer_block.norm1,transformer_block.attention.v_proj.input_broadcast:rram_cim
+32,160,sram_cim,40,"[1, 5, 8]",digital_processor,transformer_block.norm1,transformer_block.attention.v_proj.input_broadcast:sram_cim
+32,160,digital_processor,40,"[1, 5, 8]",rram_cim,transformer_block.attention.v_proj.backbone_output,transformer_block.attention.v_proj.backbone_to_digital
+32,160,digital_processor,40,"[1, 5, 8]",sram_cim,transformer_block.attention.v_proj.lora_output,transformer_block.attention.v_proj.lora_to_digital
+32,160,sram_cim,40,"[1, 2, 5, 4]",digital_processor,transformer_block.attention.q_heads,transformer_block.attention.q_to_sram
+32,160,sram_cim,40,"[1, 2, 4, 5]",digital_processor,transformer_block.attention.k_t,transformer_block.attention.k_t_to_sram
+32,200,digital_processor,50,"[1, 2, 5, 5]",sram_cim,transformer_block.attention.scores_sram,transformer_block.attention.scores_to_digital
+32,200,sram_cim,50,"[1, 2, 5, 5]",digital_processor,transformer_block.attention.probabilities,transformer_block.attention.probabilities_to_sram
+32,160,sram_cim,40,"[1, 2, 5, 4]",digital_processor,transformer_block.attention.v_heads,transformer_block.attention.v_to_sram
+32,160,digital_processor,40,"[1, 2, 5, 4]",sram_cim,transformer_block.attention.context_sram,transformer_block.attention.context_to_digital
+32,160,rram_cim,40,"[1, 5, 8]",digital_processor,transformer_block.attention.merged_heads,transformer_block.attention.out_proj.input_broadcast:rram_cim
+32,160,sram_cim,40,"[1, 5, 8]",digital_processor,transformer_block.attention.merged_heads,transformer_block.attention.out_proj.input_broadcast:sram_cim
+32,160,digital_processor,40,"[1, 5, 8]",rram_cim,transformer_block.attention.out_proj.backbone_output,transformer_block.attention.out_proj.backbone_to_digital
+32,160,digital_processor,40,"[1, 5, 8]",sram_cim,transformer_block.attention.out_proj.lora_output,transformer_block.attention.out_proj.lora_to_digital
+32,160,rram_cim,40,"[1, 5, 8]",digital_processor,transformer_block.norm2,transformer_block.feed_forward.up_proj.input_broadcast:rram_cim
+32,160,sram_cim,40,"[1, 5, 8]",digital_processor,transformer_block.norm2,transformer_block.feed_forward.up_proj.input_broadcast:sram_cim
+32,320,digital_processor,80,"[1, 5, 16]",rram_cim,transformer_block.feed_forward.up_proj.backbone_output,transformer_block.feed_forward.up_proj.backbone_to_digital
+32,320,digital_processor,80,"[1, 5, 16]",sram_cim,transformer_block.feed_forward.up_proj.lora_output,transformer_block.feed_forward.up_proj.lora_to_digital
+32,320,rram_cim,80,"[1, 5, 16]",digital_processor,transformer_block.feed_forward.gelu_output,transformer_block.feed_forward.down_proj.input_broadcast:rram_cim
+32,320,sram_cim,80,"[1, 5, 16]",digital_processor,transformer_block.feed_forward.gelu_output,transformer_block.feed_forward.down_proj.input_broadcast:sram_cim
+32,160,digital_processor,40,"[1, 5, 8]",rram_cim,transformer_block.feed_forward.down_proj.backbone_output,transformer_block.feed_forward.down_proj.backbone_to_digital
+32,160,digital_processor,40,"[1, 5, 8]",sram_cim,transformer_block.feed_forward.down_proj.lora_output,transformer_block.feed_forward.down_proj.lora_to_digital

@@ -1,0 +1,1676 @@
+{
+  "phase": "execution",
+  "totals": {
+    "matmul_operations": 20,
+    "macs": 4080,
+    "weight_events": 0,
+    "weight_bytes": 0,
+    "digital_operations": 28,
+    "digital_primitives": {
+      "add_or_subtract": 400,
+      "multiply": 690,
+      "divide": 150,
+      "sqrt": 10,
+      "add": 800,
+      "metadata_or_layout": 160,
+      "data_rearrangement": 200,
+      "compare": 40,
+      "exp": 50,
+      "tanh": 80
+    },
+    "data_transfers": 31,
+    "transferred_bytes": 5560
+  },
+  "by_unit": {
+    "rram_cim": {
+      "matmul_operations": 6,
+      "macs": 2560,
+      "weight_events": 0,
+      "weight_bytes": 0,
+      "digital_operations": 0,
+      "digital_output_elements": 0,
+      "digital_primitives": {}
+    },
+    "sram_cim": {
+      "matmul_operations": 14,
+      "macs": 1520,
+      "weight_events": 0,
+      "weight_bytes": 0,
+      "digital_operations": 0,
+      "digital_output_elements": 0,
+      "digital_primitives": {}
+    },
+    "digital_processor": {
+      "matmul_operations": 0,
+      "macs": 0,
+      "weight_events": 0,
+      "weight_bytes": 0,
+      "digital_operations": 28,
+      "digital_output_elements": 1260,
+      "digital_primitives": {
+        "add_or_subtract": 400,
+        "multiply": 690,
+        "divide": 150,
+        "sqrt": 10,
+        "add": 800,
+        "metadata_or_layout": 160,
+        "data_rearrangement": 200,
+        "compare": 40,
+        "exp": 50,
+        "tanh": 80
+      }
+    }
+  },
+  "transfers_by_path": {
+    "digital_buffer->digital_processor": {
+      "transfers": 1,
+      "bytes": 40
+    },
+    "digital_processor->rram_cim": {
+      "transfers": 6,
+      "bytes": 1120
+    },
+    "digital_processor->sram_cim": {
+      "transfers": 10,
+      "bytes": 1800
+    },
+    "rram_cim->digital_processor": {
+      "transfers": 6,
+      "bytes": 1120
+    },
+    "sram_cim->digital_processor": {
+      "transfers": 8,
+      "bytes": 1480
+    }
+  },
+  "compute_events": [
+    {
+      "unit": "rram_cim",
+      "op_name": "transformer_block.attention.q_proj.backbone_matmul",
+      "mode": "resident_static",
+      "lhs_shape": [
+        1,
+        5,
+        8
+      ],
+      "rhs_shape": [
+        8,
+        8
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "macs": 320,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.attention.q_proj.lora_a_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        8
+      ],
+      "rhs_shape": [
+        8,
+        2
+      ],
+      "output_shape": [
+        1,
+        5,
+        2
+      ],
+      "macs": 80,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.attention.q_proj.lora_b_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        2
+      ],
+      "rhs_shape": [
+        2,
+        8
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "macs": 80,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "rram_cim",
+      "op_name": "transformer_block.attention.k_proj.backbone_matmul",
+      "mode": "resident_static",
+      "lhs_shape": [
+        1,
+        5,
+        8
+      ],
+      "rhs_shape": [
+        8,
+        8
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "macs": 320,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.attention.k_proj.lora_a_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        8
+      ],
+      "rhs_shape": [
+        8,
+        2
+      ],
+      "output_shape": [
+        1,
+        5,
+        2
+      ],
+      "macs": 80,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.attention.k_proj.lora_b_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        2
+      ],
+      "rhs_shape": [
+        2,
+        8
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "macs": 80,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "rram_cim",
+      "op_name": "transformer_block.attention.v_proj.backbone_matmul",
+      "mode": "resident_static",
+      "lhs_shape": [
+        1,
+        5,
+        8
+      ],
+      "rhs_shape": [
+        8,
+        8
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "macs": 320,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.attention.v_proj.lora_a_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        8
+      ],
+      "rhs_shape": [
+        8,
+        2
+      ],
+      "output_shape": [
+        1,
+        5,
+        2
+      ],
+      "macs": 80,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.attention.v_proj.lora_b_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        2
+      ],
+      "rhs_shape": [
+        2,
+        8
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "macs": 80,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.attention.qk_t",
+      "mode": "dynamic",
+      "lhs_shape": [
+        1,
+        2,
+        5,
+        4
+      ],
+      "rhs_shape": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "output_shape": [
+        1,
+        2,
+        5,
+        5
+      ],
+      "macs": 200,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.attention.probabilities_v",
+      "mode": "dynamic",
+      "lhs_shape": [
+        1,
+        2,
+        5,
+        5
+      ],
+      "rhs_shape": [
+        1,
+        2,
+        5,
+        4
+      ],
+      "output_shape": [
+        1,
+        2,
+        5,
+        4
+      ],
+      "macs": 200,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "rram_cim",
+      "op_name": "transformer_block.attention.out_proj.backbone_matmul",
+      "mode": "resident_static",
+      "lhs_shape": [
+        1,
+        5,
+        8
+      ],
+      "rhs_shape": [
+        8,
+        8
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "macs": 320,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.attention.out_proj.lora_a_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        8
+      ],
+      "rhs_shape": [
+        8,
+        2
+      ],
+      "output_shape": [
+        1,
+        5,
+        2
+      ],
+      "macs": 80,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.attention.out_proj.lora_b_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        2
+      ],
+      "rhs_shape": [
+        2,
+        8
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "macs": 80,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "rram_cim",
+      "op_name": "transformer_block.feed_forward.up_proj.backbone_matmul",
+      "mode": "resident_static",
+      "lhs_shape": [
+        1,
+        5,
+        8
+      ],
+      "rhs_shape": [
+        8,
+        16
+      ],
+      "output_shape": [
+        1,
+        5,
+        16
+      ],
+      "macs": 640,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.feed_forward.up_proj.lora_a_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        8
+      ],
+      "rhs_shape": [
+        8,
+        2
+      ],
+      "output_shape": [
+        1,
+        5,
+        2
+      ],
+      "macs": 80,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.feed_forward.up_proj.lora_b_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        2
+      ],
+      "rhs_shape": [
+        2,
+        16
+      ],
+      "output_shape": [
+        1,
+        5,
+        16
+      ],
+      "macs": 160,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "rram_cim",
+      "op_name": "transformer_block.feed_forward.down_proj.backbone_matmul",
+      "mode": "resident_static",
+      "lhs_shape": [
+        1,
+        5,
+        16
+      ],
+      "rhs_shape": [
+        16,
+        8
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "macs": 640,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.feed_forward.down_proj.lora_a_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        16
+      ],
+      "rhs_shape": [
+        16,
+        2
+      ],
+      "output_shape": [
+        1,
+        5,
+        2
+      ],
+      "macs": 160,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    },
+    {
+      "unit": "sram_cim",
+      "op_name": "transformer_block.feed_forward.down_proj.lora_b_matmul",
+      "mode": "resident",
+      "lhs_shape": [
+        1,
+        5,
+        2
+      ],
+      "rhs_shape": [
+        2,
+        8
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "macs": 80,
+      "input_bit_width": 8,
+      "weight_bit_width": 8,
+      "output_bit_width": 32
+    }
+  ],
+  "storage_events": [],
+  "digital_events": [
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.layer_norm1",
+      "op_type": "layer_norm",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add_or_subtract": 155,
+        "multiply": 80,
+        "divide": 50,
+        "sqrt": 5
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.q_proj.merge",
+      "op_type": "add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.q_proj.bias",
+      "op_type": "bias_add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.k_proj.merge",
+      "op_type": "add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.k_proj.bias",
+      "op_type": "bias_add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.v_proj.merge",
+      "op_type": "add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.v_proj.bias",
+      "op_type": "bias_add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.reshape_q",
+      "op_type": "reshape",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        2,
+        4
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "metadata_or_layout": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.reshape_k",
+      "op_type": "reshape",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        2,
+        4
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "metadata_or_layout": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.reshape_v",
+      "op_type": "reshape",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        2,
+        4
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "metadata_or_layout": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.transpose_q",
+      "op_type": "transpose",
+      "input_shapes": [
+        [
+          1,
+          5,
+          2,
+          4
+        ]
+      ],
+      "output_shape": [
+        1,
+        2,
+        5,
+        4
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "data_rearrangement": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.transpose_k",
+      "op_type": "transpose",
+      "input_shapes": [
+        [
+          1,
+          5,
+          2,
+          4
+        ]
+      ],
+      "output_shape": [
+        1,
+        2,
+        5,
+        4
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "data_rearrangement": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.transpose_v",
+      "op_type": "transpose",
+      "input_shapes": [
+        [
+          1,
+          5,
+          2,
+          4
+        ]
+      ],
+      "output_shape": [
+        1,
+        2,
+        5,
+        4
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "data_rearrangement": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.transpose_k_t",
+      "op_type": "transpose",
+      "input_shapes": [
+        [
+          1,
+          2,
+          5,
+          4
+        ]
+      ],
+      "output_shape": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "data_rearrangement": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.scale_scores",
+      "op_type": "scale",
+      "input_shapes": [
+        [
+          1,
+          2,
+          5,
+          5
+        ]
+      ],
+      "output_shape": [
+        1,
+        2,
+        5,
+        5
+      ],
+      "output_elements": 50,
+      "operation_counts": {
+        "multiply": 50
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.softmax",
+      "op_type": "softmax",
+      "input_shapes": [
+        [
+          1,
+          2,
+          5,
+          5
+        ]
+      ],
+      "output_shape": [
+        1,
+        2,
+        5,
+        5
+      ],
+      "output_elements": 50,
+      "operation_counts": {
+        "compare": 40,
+        "add_or_subtract": 90,
+        "exp": 50,
+        "divide": 50
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.transpose_context",
+      "op_type": "transpose",
+      "input_shapes": [
+        [
+          1,
+          2,
+          5,
+          4
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        2,
+        4
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "data_rearrangement": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.merge_heads",
+      "op_type": "reshape",
+      "input_shapes": [
+        [
+          1,
+          5,
+          2,
+          4
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "metadata_or_layout": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.out_proj.merge",
+      "op_type": "add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention.out_proj.bias",
+      "op_type": "bias_add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.attention_residual_add",
+      "op_type": "residual_add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.layer_norm2",
+      "op_type": "layer_norm",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add_or_subtract": 155,
+        "multiply": 80,
+        "divide": 50,
+        "sqrt": 5
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.feed_forward.up_proj.merge",
+      "op_type": "add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          16
+        ],
+        [
+          1,
+          5,
+          16
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        16
+      ],
+      "output_elements": 80,
+      "operation_counts": {
+        "add": 80
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.feed_forward.up_proj.bias",
+      "op_type": "bias_add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          16
+        ],
+        [
+          16
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        16
+      ],
+      "output_elements": 80,
+      "operation_counts": {
+        "add": 80
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.feed_forward.gelu",
+      "op_type": "gelu",
+      "input_shapes": [
+        [
+          1,
+          5,
+          16
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        16
+      ],
+      "output_elements": 80,
+      "operation_counts": {
+        "multiply": 480,
+        "add": 160,
+        "tanh": 80
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.feed_forward.down_proj.merge",
+      "op_type": "add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.feed_forward.down_proj.bias",
+      "op_type": "bias_add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    },
+    {
+      "unit": "digital_processor",
+      "op_name": "transformer_block.feed_forward_residual_add",
+      "op_type": "residual_add",
+      "input_shapes": [
+        [
+          1,
+          5,
+          8
+        ],
+        [
+          1,
+          5,
+          8
+        ]
+      ],
+      "output_shape": [
+        1,
+        5,
+        8
+      ],
+      "output_elements": 40,
+      "operation_counts": {
+        "add": 40
+      }
+    }
+  ],
+  "transfer_events": [
+    {
+      "transfer_name": "transformer_block.input_to_digital",
+      "tensor_name": "block_input",
+      "source": "digital_buffer",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 8,
+      "bytes": 40
+    },
+    {
+      "transfer_name": "transformer_block.attention.q_proj.input_broadcast:rram_cim",
+      "tensor_name": "transformer_block.norm1",
+      "source": "digital_processor",
+      "destination": "rram_cim",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.q_proj.input_broadcast:sram_cim",
+      "tensor_name": "transformer_block.norm1",
+      "source": "digital_processor",
+      "destination": "sram_cim",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.q_proj.backbone_to_digital",
+      "tensor_name": "transformer_block.attention.q_proj.backbone_output",
+      "source": "rram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.q_proj.lora_to_digital",
+      "tensor_name": "transformer_block.attention.q_proj.lora_output",
+      "source": "sram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.k_proj.input_broadcast:rram_cim",
+      "tensor_name": "transformer_block.norm1",
+      "source": "digital_processor",
+      "destination": "rram_cim",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.k_proj.input_broadcast:sram_cim",
+      "tensor_name": "transformer_block.norm1",
+      "source": "digital_processor",
+      "destination": "sram_cim",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.k_proj.backbone_to_digital",
+      "tensor_name": "transformer_block.attention.k_proj.backbone_output",
+      "source": "rram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.k_proj.lora_to_digital",
+      "tensor_name": "transformer_block.attention.k_proj.lora_output",
+      "source": "sram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.v_proj.input_broadcast:rram_cim",
+      "tensor_name": "transformer_block.norm1",
+      "source": "digital_processor",
+      "destination": "rram_cim",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.v_proj.input_broadcast:sram_cim",
+      "tensor_name": "transformer_block.norm1",
+      "source": "digital_processor",
+      "destination": "sram_cim",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.v_proj.backbone_to_digital",
+      "tensor_name": "transformer_block.attention.v_proj.backbone_output",
+      "source": "rram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.v_proj.lora_to_digital",
+      "tensor_name": "transformer_block.attention.v_proj.lora_output",
+      "source": "sram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.q_to_sram",
+      "tensor_name": "transformer_block.attention.q_heads",
+      "source": "digital_processor",
+      "destination": "sram_cim",
+      "shape": [
+        1,
+        2,
+        5,
+        4
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.k_t_to_sram",
+      "tensor_name": "transformer_block.attention.k_t",
+      "source": "digital_processor",
+      "destination": "sram_cim",
+      "shape": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.scores_to_digital",
+      "tensor_name": "transformer_block.attention.scores_sram",
+      "source": "sram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        2,
+        5,
+        5
+      ],
+      "elements": 50,
+      "bit_width": 32,
+      "bytes": 200
+    },
+    {
+      "transfer_name": "transformer_block.attention.probabilities_to_sram",
+      "tensor_name": "transformer_block.attention.probabilities",
+      "source": "digital_processor",
+      "destination": "sram_cim",
+      "shape": [
+        1,
+        2,
+        5,
+        5
+      ],
+      "elements": 50,
+      "bit_width": 32,
+      "bytes": 200
+    },
+    {
+      "transfer_name": "transformer_block.attention.v_to_sram",
+      "tensor_name": "transformer_block.attention.v_heads",
+      "source": "digital_processor",
+      "destination": "sram_cim",
+      "shape": [
+        1,
+        2,
+        5,
+        4
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.context_to_digital",
+      "tensor_name": "transformer_block.attention.context_sram",
+      "source": "sram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        2,
+        5,
+        4
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.out_proj.input_broadcast:rram_cim",
+      "tensor_name": "transformer_block.attention.merged_heads",
+      "source": "digital_processor",
+      "destination": "rram_cim",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.out_proj.input_broadcast:sram_cim",
+      "tensor_name": "transformer_block.attention.merged_heads",
+      "source": "digital_processor",
+      "destination": "sram_cim",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.out_proj.backbone_to_digital",
+      "tensor_name": "transformer_block.attention.out_proj.backbone_output",
+      "source": "rram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.attention.out_proj.lora_to_digital",
+      "tensor_name": "transformer_block.attention.out_proj.lora_output",
+      "source": "sram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.feed_forward.up_proj.input_broadcast:rram_cim",
+      "tensor_name": "transformer_block.norm2",
+      "source": "digital_processor",
+      "destination": "rram_cim",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.feed_forward.up_proj.input_broadcast:sram_cim",
+      "tensor_name": "transformer_block.norm2",
+      "source": "digital_processor",
+      "destination": "sram_cim",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.feed_forward.up_proj.backbone_to_digital",
+      "tensor_name": "transformer_block.feed_forward.up_proj.backbone_output",
+      "source": "rram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        16
+      ],
+      "elements": 80,
+      "bit_width": 32,
+      "bytes": 320
+    },
+    {
+      "transfer_name": "transformer_block.feed_forward.up_proj.lora_to_digital",
+      "tensor_name": "transformer_block.feed_forward.up_proj.lora_output",
+      "source": "sram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        16
+      ],
+      "elements": 80,
+      "bit_width": 32,
+      "bytes": 320
+    },
+    {
+      "transfer_name": "transformer_block.feed_forward.down_proj.input_broadcast:rram_cim",
+      "tensor_name": "transformer_block.feed_forward.gelu_output",
+      "source": "digital_processor",
+      "destination": "rram_cim",
+      "shape": [
+        1,
+        5,
+        16
+      ],
+      "elements": 80,
+      "bit_width": 32,
+      "bytes": 320
+    },
+    {
+      "transfer_name": "transformer_block.feed_forward.down_proj.input_broadcast:sram_cim",
+      "tensor_name": "transformer_block.feed_forward.gelu_output",
+      "source": "digital_processor",
+      "destination": "sram_cim",
+      "shape": [
+        1,
+        5,
+        16
+      ],
+      "elements": 80,
+      "bit_width": 32,
+      "bytes": 320
+    },
+    {
+      "transfer_name": "transformer_block.feed_forward.down_proj.backbone_to_digital",
+      "tensor_name": "transformer_block.feed_forward.down_proj.backbone_output",
+      "source": "rram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    },
+    {
+      "transfer_name": "transformer_block.feed_forward.down_proj.lora_to_digital",
+      "tensor_name": "transformer_block.feed_forward.down_proj.lora_output",
+      "source": "sram_cim",
+      "destination": "digital_processor",
+      "shape": [
+        1,
+        5,
+        8
+      ],
+      "elements": 40,
+      "bit_width": 32,
+      "bytes": 160
+    }
+  ]
+}

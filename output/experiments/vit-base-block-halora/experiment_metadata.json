@@ -1,0 +1,81 @@
+{
+  "experiment": {
+    "name": "vit-base-block-halora",
+    "simulator": {
+      "model": {
+        "embed_dim": 768,
+        "num_heads": 12,
+        "mlp_dim": 3072,
+        "lora_rank": 4,
+        "layer_norm_epsilon": 1e-05
+      },
+      "precision": {
+        "activation_bits": 8,
+        "weight_bits": 8,
+        "accumulator_bits": 32
+      },
+      "mapping": {
+        "q_proj": "hybrid",
+        "k_proj": "hybrid",
+        "v_proj": "hybrid",
+        "out_proj": "rram",
+        "ff_up": "hybrid",
+        "ff_down": "hybrid",
+        "qk_matmul": "sram",
+        "pv_matmul": "sram",
+        "nonlinear": "digital"
+      }
+    },
+    "workload": {
+      "batch_size": 1,
+      "tokens": 197
+    },
+    "seed": 2026
+  },
+  "generated_at_utc": "2026-11-09T17:31:33.304733+00:00",
+  "environment": {
+    "python": "3.12.6",
+    "numpy": "2.1.1",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "output": {
+    "shape": [
+      1,
+      197,
+      768
+    ],
+    "mean": -0.00026465701156409626,
+    "std": 1.0666647343528437
+  },
+  "preparation_totals": {
+    "matmul_operations": 0,
+    "macs": 0,
+    "weight_events": 26,
+    "weight_bytes": 7166976,
+    "digital_operations": 0,
+    "digital_primitives": {},
+    "data_transfers": 0,
+    "transferred_bytes": 0
+  },
+  "execution_totals": {
+    "matmul_operations": 18,
+    "macs": 1463637504,
+    "weight_events": 0,
+    "weight_bytes": 0,
+    "digital_operations": 27,
+    "digital_primitives": {
+      "add_or_subtract": 2139026,
+      "multiply": 4701996,
+      "divide": 769088,
+      "sqrt": 394,
+      "add": 4084992,
+      "metadata_or_layout": 605184,
+      "data_rearrangement": 756480,
+      "compare": 463344,
+      "exp": 465708,
+      "tanh": 605184
+    },
+    "data_transfers": 29,
+    "transferred_bytes": 26873952
+  }
+}

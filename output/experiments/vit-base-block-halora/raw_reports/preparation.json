@@ -1,0 +1,376 @@
+{
+  "phase": "preparation",
+  "totals": {
+    "matmul_operations": 0,
+    "macs": 0,
+    "weight_events": 26,
+    "weight_bytes": 7166976,
+    "digital_operations": 0,
+    "digital_primitives": {},
+    "data_transfers": 0,
+    "transferred_bytes": 0
+  },
+  "by_unit": {
+    "digital_processor": {
+      "matmul_operations": 0,
+      "macs": 0,
+      "weight_events": 10,
+      "weight_bytes": 39936,
+      "digital_operations": 0,
+      "digital_output_elements": 0,
+      "digital_primitives": {}
+    },
+    "rram_cim": {
+      "matmul_operations": 0,
+      "macs": 0,
+      "weight_events": 6,
+      "weight_bytes": 7077888,
+      "digital_operations": 0,
+      "digital_output_elements": 0,
+      "digital_primitives": {}
+    },
+    "sram_cim": {
+      "matmul_operations": 0,
+      "macs": 0,
+      "weight_events": 10,
+      "weight_bytes": 49152,
+      "digital_operations": 0,
+      "digital_output_elements": 0,
+      "digital_primitives": {}
+    }
+  },
+  "transfers_by_path": {},
+  "compute_events": [],
+  "storage_events": [
+    {
+      "unit": "digital_processor",
+      "action": "load_parameter",
+      "weight_name": "transformer_block.ln1_gamma",
+      "version": 1,
+      "shape": [
+        768
+      ],
+      "elements": 768,
+      "bit_width": 32,
+      "bytes": 3072
+    },
+    {
+      "unit": "digital_processor",
+      "action": "load_parameter",
+      "weight_name": "transformer_block.ln1_beta",
+      "version": 1,
+      "shape": [
+        768
+      ],
+      "elements": 768,
+      "bit_width": 32,
+      "bytes": 3072
+    },
+    {
+      "unit": "digital_processor",
+      "action": "load_parameter",
+      "weight_name": "transformer_block.ln2_gamma",
+      "version": 1,
+      "shape": [
+        768
+      ],
+      "elements": 768,
+      "bit_width": 32,
+      "bytes": 3072
+    },
+    {
+      "unit": "digital_processor",
+      "action": "load_parameter",
+      "weight_name": "transformer_block.ln2_beta",
+      "version": 1,
+      "shape": [
+        768
+      ],
+      "elements": 768,
+      "bit_width": 32,
+      "bytes": 3072
+    },
+    {
+      "unit": "rram_cim",
+      "action": "program",
+      "weight_name": "transformer_block.attention.q_proj.backbone",
+      "version": 1,
+      "shape": [
+        768,
+        768
+      ],
+      "elements": 589824,
+      "bit_width": 8,
+      "bytes": 589824
+    },
+    {
+      "unit": "sram_cim",
+      "action": "load",
+      "weight_name": "transformer_block.attention.q_proj.lora_a",
+      "version": 1,
+      "shape": [
+        768,
+        4
+      ],
+      "elements": 3072,
+      "bit_width": 8,
+      "bytes": 3072
+    },
+    {
+      "unit": "sram_cim",
+      "action": "load",
+      "weight_name": "transformer_block.attention.q_proj.lora_b",
+      "version": 1,
+      "shape": [
+        4,
+        768
+      ],
+      "elements": 3072,
+      "bit_width": 8,
+      "bytes": 3072
+    },
+    {
+      "unit": "digital_processor",
+      "action": "load_parameter",
+      "weight_name": "transformer_block.attention.q_proj.bias",
+      "version": 1,
+      "shape": [
+        768
+      ],
+      "elements": 768,
+      "bit_width": 32,
+      "bytes": 3072
+    },
+    {
+      "unit": "rram_cim",
+      "action": "program",
+      "weight_name": "transformer_block.attention.k_proj.backbone",
+      "version": 1,
+      "shape": [
+        768,
+        768
+      ],
+      "elements": 589824,
+      "bit_width": 8,
+      "bytes": 589824
+    },
+    {
+      "unit": "sram_cim",
+      "action": "load",
+      "weight_name": "transformer_block.attention.k_proj.lora_a",
+      "version": 1,
+      "shape": [
+        768,
+        4
+      ],
+      "elements": 3072,
+      "bit_width": 8,
+      "bytes": 3072
+    },
+    {
+      "unit": "sram_cim",
+      "action": "load",
+      "weight_name": "transformer_block.attention.k_proj.lora_b",
+      "version": 1,
+      "shape": [
+        4,
+        768
+      ],
+      "elements": 3072,
+      "bit_width": 8,
+      "bytes": 3072
+    },
+    {
+      "unit": "digital_processor",
+      "action": "load_parameter",
+      "weight_name": "transformer_block.attention.k_proj.bias",
+      "version": 1,
+      "shape": [
+        768
+      ],
+      "elements": 768,
+      "bit_width": 32,
+      "bytes": 3072
+    },
+    {
+      "unit": "rram_cim",
+      "action": "program",
+      "weight_name": "transformer_block.attention.v_proj.backbone",
+      "version": 1,
+      "shape": [
+        768,
+        768
+      ],
+      "elements": 589824,
+      "bit_width": 8,
+      "bytes": 589824
+    },
+    {
+      "unit": "sram_cim",
+      "action": "load",
+      "weight_name": "transformer_block.attention.v_proj.lora_a",
+      "version": 1,
+      "shape": [
+        768,
+        4
+      ],
+      "elements": 3072,
+      "bit_width": 8,
+      "bytes": 3072
+    },
+    {
+      "unit": "sram_cim",
+      "action": "load",
+      "weight_name": "transformer_block.attention.v_proj.lora_b",
+      "version": 1,
+      "shape": [
+        4,
+        768
+      ],
+      "elements": 3072,
+      "bit_width": 8,
+      "bytes": 3072
+    },
+    {
+      "unit": "digital_processor",
+      "action": "load_parameter",
+      "weight_name": "transformer_block.attention.v_proj.bias",
+      "version": 1,
+      "shape": [
+        768
+      ],
+      "elements": 768,
+      "bit_width": 32,
+      "bytes": 3072
+    },
+    {
+      "unit": "rram_cim",
+      "action": "program",
+      "weight_name": "transformer_block.attention.out_proj.backbone",
+      "version": 1,
+      "shape": [
+        768,
+        768
+      ],
+      "elements": 589824,
+      "bit_width": 8,
+      "bytes": 589824
+    },
+    {
+      "unit": "digital_processor",
+      "action": "load_parameter",
+      "weight_name": "transformer_block.attention.out_proj.bias",
+      "version": 1,
+      "shape": [
+        768
+      ],
+      "elements": 768,
+      "bit_width": 32,
+      "bytes": 3072
+    },
+    {
+      "unit": "rram_cim",
+      "action": "program",
+      "weight_name": "transformer_block.feed_forward.up_proj.backbone",
+      "version": 1,
+      "shape": [
+        768,
+        3072
+      ],
+      "elements": 2359296,
+      "bit_width": 8,
+      "bytes": 2359296
+    },
+    {
+      "unit": "sram_cim",
+      "action": "load",
+      "weight_name": "transformer_block.feed_forward.up_proj.lora_a",
+      "version": 1,
+      "shape": [
+        768,
+        4
+      ],
+      "elements": 3072,
+      "bit_width": 8,
+      "bytes": 3072
+    },
+    {
+      "unit": "sram_cim",
+      "action": "load",
+      "weight_name": "transformer_block.feed_forward.up_proj.lora_b",
+      "version": 1,
+      "shape": [
+        4,
+        3072
+      ],
+      "elements": 12288,
+      "bit_width": 8,
+      "bytes": 12288
+    },
+    {
+      "unit": "digital_processor",
+      "action": "load_parameter",
+      "weight_name": "transformer_block.feed_forward.up_proj.bias",
+      "version": 1,
+      "shape": [
+        3072
+      ],
+      "elements": 3072,
+      "bit_width": 32,
+      "bytes": 12288
+    },
+    {
+      "unit": "rram_cim",
+      "action": "program",
+      "weight_name": "transformer_block.feed_forward.down_proj.backbone",
+      "version": 1,
+      "shape": [
+        3072,
+        768
+      ],
+      "elements": 2359296,
+      "bit_width": 8,
+      "bytes": 2359296
+    },
+    {
+      "unit": "sram_cim",
+      "action": "load",
+      "weight_name": "transformer_block.feed_forward.down_proj.lora_a",
+      "version": 1,
+      "shape": [
+        3072,
+        4
+      ],
+      "elements": 12288,
+      "bit_width": 8,
+      "bytes": 12288
+    },
+    {
+      "unit": "sram_cim",
+      "action": "load",
+      "weight_name": "transformer_block.feed_forward.down_proj.lora_b",
+      "version": 1,
+      "shape": [
+        4,
+        768
+      ],
+      "elements": 3072,
+      "bit_width": 8,
+      "bytes": 3072
+    },
+    {
+      "unit": "digital_processor",
+      "action": "load_parameter",
+      "weight_name": "transformer_block.feed_forward.down_proj.bias",
+      "version": 1,
+      "shape": [
+        768
+      ],
+      "elements": 768,
+      "bit_width": 32,
+      "bytes": 3072
+    }
+  ],
+  "digital_events": [],
+  "transfer_events": []
+}
